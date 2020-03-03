@@ -12,8 +12,10 @@ public class BulletDamage : MonoBehaviour
         if (collision.gameObject.CompareTag("Ship"))
         {
             // Destroy target
-            collision.gameObject.transform.DOScale(0, 0.25f).OnComplete((() => { Destroy(collision.gameObject); }));
-            
+            GameObject target = collision.gameObject;
+            collision.gameObject.transform.DOScale(0, 0.15f).OnComplete((() => { Destroy(target); }));
+            //Destroy(collision.gameObject);
+
             // Destroy Bullet
             Destroy(gameObject);
 

@@ -8,11 +8,11 @@ public class GameOverMenuController : MonoBehaviour
     public GameObject gameOverMenuUI;
     public GameObject playerSpawner;
 
-    private Spawn spawn;
+    private SpawnPlayer spawn;
 
     private void Start()
     {
-        spawn = playerSpawner.GetComponent<Spawn>();
+        spawn = playerSpawner.GetComponent<SpawnPlayer>();
     }
 
     private void Update()
@@ -32,8 +32,6 @@ public class GameOverMenuController : MonoBehaviour
         Time.timeScale = 0f;
         isGameOver = true;
         gameOverMenuUI.SetActive(true);
-        //gameOverMenuUI.gameObject.SetActive(true);
-
         ScoreController.Instance.ClearScore();
     }
 
@@ -41,17 +39,24 @@ public class GameOverMenuController : MonoBehaviour
     {
         Time.timeScale = 1f;
         isGameOver = false;
-        GameObject[] ships = GameObject.FindGameObjectsWithTag("Ship");
-        foreach (GameObject ship in ships)
-        { Destroy(ship); }
+        DestroyGameObjectsWithTags("Ship", "Bullet");
         spawn.Invoke("SpawnNext", 0.5f);
         gameOverMenuUI.SetActive(false);
-
     }
 
     public void QuitGame()
     {
         Debug.Log("Quitting game...");
         Application.Quit();
+    }
+
+    private void DestroyGameObjectsWithTags(params string[] tags)
+    {
+        foreach (string tag in tags)
+        {
+            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
+            foreach (GameObject go in gameObjects)
+            { Destroy(go); }
+        }
     }
 }

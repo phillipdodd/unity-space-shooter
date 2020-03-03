@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5460518255389281593}
   - component: {fileID: 2093938962583345757}
   m_Layer: 0
-  m_Name: PlayerShip 1
+  m_Name: PlayerRocket
   m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e9925cb55885449a15e8ba3bcaa4af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 5
+  playerSpeed: 6
 --- !u!50 &5460518255389281590
 Rigidbody2D:
   serializedVersion: 4
@@ -180,8 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8115413c25dc47f44bfd3db6039a0487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverMenuUI: {fileID: 3163260982139452516, guid: 4ab2dbf99f9c5704dbcbe87d1b38574c,
-    type: 3}
   endGameDelay: 0.5
 --- !u!1 &5460518255688147680
 GameObject:

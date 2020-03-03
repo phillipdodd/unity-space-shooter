@@ -1,31 +1,34 @@
-﻿using System.Collections;
+﻿using Sirenix.OdinInspector;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FireEnemy : MonoBehaviour
 {
-    // Bullet prefab
     public GameObject bullet;
 
-    [Header("Bullet Interval")]
-    public float min = 2;
-    public float max = 3;
+    [TitleGroup("Bullet Interval")]
+    public float min = 0.5f;
+    [TitleGroup("Bullet Interval")]
+    public float max = 1.5f;
 
     private Collider2D enemyCollider;
 
     private void Start()
     {
         enemyCollider = transform.parent.GetComponent<Collider2D>();
-        Invoke("Fire", Random.Range(min, max));
+        Invoke("Fire", Random.Range(0.2f, 0.5f));
     }
 
     private void Fire()
     {
-        GameObject g = Instantiate(bullet, transform.position, Quaternion.identity);
-        // IgnoreCollisionLayer()?
-        // This script is intended for children of enemy (transform.parent)
-        Physics2D.IgnoreCollision(g.GetComponent<Collider2D>(), enemyCollider);
-        Invoke("Fire", Random.Range(min, max));
+        // Only spawn if parent enemy still exists
+        if(transform.parent)
+        {
+            GameObject g = Instantiate(bullet, transform.position, Quaternion.identity);
+            Physics2D.IgnoreCollision(g.GetComponent<Collider2D>(), enemyCollider);
+            Invoke("Fire", Random.Range(min, max));
+        }   
     }
 
 }
