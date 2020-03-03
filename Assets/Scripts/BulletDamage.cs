@@ -8,13 +8,13 @@ public class BulletDamage : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         // FirePlayer is already setting its spawned bullets to ignore itself
         if (collision.gameObject.CompareTag("Ship"))
         {
             // Destroy target
             GameObject target = collision.gameObject;
             collision.gameObject.transform.DOScale(0, 0.15f).OnComplete((() => { Destroy(target); }));
-            //Destroy(collision.gameObject);
 
             // Destroy Bullet
             Destroy(gameObject);

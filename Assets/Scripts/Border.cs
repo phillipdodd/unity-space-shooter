@@ -7,9 +7,9 @@ public class Border : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log(collision.gameObject.name);
-        if (!collision.collider.gameObject.name.Contains("Player"))
+        if (!collision.gameObject.name.Contains("Player"))
         {
-            Destroy(collision.collider.gameObject);
+            Destroy(collision.gameObject);
         }
     }
 }

@@ -16,6 +16,7 @@ public class FireEnemy : MonoBehaviour
 
     private void Start()
     {
+        Physics2D.IgnoreLayerCollision(8, 8);
         enemyCollider = transform.parent.GetComponent<Collider2D>();
         Invoke("Fire", Random.Range(0.2f, 0.5f));
     }
@@ -25,7 +26,7 @@ public class FireEnemy : MonoBehaviour
         // Only spawn if parent enemy still exists
         if(transform.parent)
         {
-            GameObject g = Instantiate(bullet, transform.position, Quaternion.identity);
+            GameObject g = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
             Physics2D.IgnoreCollision(g.GetComponent<Collider2D>(), enemyCollider);
             Invoke("Fire", Random.Range(min, max));
         }   
