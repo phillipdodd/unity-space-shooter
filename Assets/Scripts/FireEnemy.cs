@@ -16,7 +16,6 @@ public class FireEnemy : MonoBehaviour
 
     private void Start()
     {
-        Physics2D.IgnoreLayerCollision(8, 8);
         enemyCollider = transform.parent.GetComponent<Collider2D>();
         Invoke("Fire", Random.Range(0.2f, 0.5f));
     }
